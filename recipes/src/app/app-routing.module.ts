@@ -10,6 +10,7 @@ import { RecipeItemComponent } from './recipes/recipe-list/recipe-item/recipe-it
 import { ShoppingEditComponent } from './shopping-list/shopping-edit/shopping-edit.component';
 import { RouterModule, Routes } from "@angular/router";
 import { NoRecipeComponent } from "./recipes/no-recipe/no-recipe.component";
+import { RecipesEditComponent } from "./recipes/recipes-edit/recipes-edit.component";
 
 
 const appRoutes:Routes = [
@@ -19,13 +20,16 @@ const appRoutes:Routes = [
         component: RecipesComponent,
         children: [
             {path: '', component: NoRecipeComponent},
-            {path: ':id', component: RecipeDetailComponent}
+            {path: 'new', component: RecipesEditComponent},
+            {path: ':id', component: RecipeDetailComponent},
+            {path: ':id/edit', component: RecipesEditComponent}
         ]
     },
     {
         path: 'shopping-list',
         component: ShoppingListComponent,
-    }
+    },
+
 ]
 
 @NgModule({
