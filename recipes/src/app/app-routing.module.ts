@@ -11,6 +11,7 @@ import { ShoppingEditComponent } from './shopping-list/shopping-edit/shopping-ed
 import { RouterModule, Routes } from "@angular/router";
 import { NoRecipeComponent } from "./recipes/no-recipe/no-recipe.component";
 import { RecipesEditComponent } from "./recipes/recipes-edit/recipes-edit.component";
+import { RecipesResolverService } from "./recipes/recipes-resolver.service";
 
 
 const appRoutes:Routes = [
@@ -21,8 +22,8 @@ const appRoutes:Routes = [
         children: [
             {path: '', component: NoRecipeComponent},
             {path: 'new', component: RecipesEditComponent},
-            {path: ':id', component: RecipeDetailComponent},
-            {path: ':id/edit', component: RecipesEditComponent}
+            {path: ':id', component: RecipeDetailComponent, resolve: [RecipesResolverService]},
+            {path: ':id/edit', component: RecipesEditComponent, resolve: [RecipesResolverService]}
         ]
     },
     {
