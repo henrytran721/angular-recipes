@@ -12,6 +12,7 @@ import { RouterModule, Routes } from "@angular/router";
 import { NoRecipeComponent } from "./recipes/no-recipe/no-recipe.component";
 import { RecipesEditComponent } from "./recipes/recipes-edit/recipes-edit.component";
 import { RecipesResolverService } from "./recipes/recipes-resolver.service";
+import { AuthComponent } from "./auth/auth.component";
 
 
 const appRoutes:Routes = [
@@ -30,7 +31,9 @@ const appRoutes:Routes = [
         path: 'shopping-list',
         component: ShoppingListComponent,
     },
-
+    {
+        path: 'auth', component: AuthComponent
+    }
 ]
 
 @NgModule({

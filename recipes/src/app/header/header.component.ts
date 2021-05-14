@@ -1,4 +1,6 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, OnDestroy, OnInit, Output } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { AuthService } from '../auth/auth.service';
 import { DataStorageService } from '../shared/data-storage.service';
 
 @Component({
@@ -6,9 +8,24 @@ import { DataStorageService } from '../shared/data-storage.service';
     templateUrl: './header.component.html'
 })
 
-export class HeaderComponent {
+export class HeaderComponent implements OnInit, OnDestroy{
+    private userSub: Subscription;
+    isAuthenticated = false;
+    constructor(private dataStorageService: DataStorageService, private authService: AuthService) {}
 
-    constructor(private dataStorageService: DataStorageService) {}
+    ngOnInit() {
+        this.userSub = this.authService.user.subscribe(user => {
+            if(user) {
+                this.isAuthenticated = true;
+            } else {
+                this.isAuthenticated = false;
+            }
+        });
+    }
+
+    ngOnDestroy() {
+        this.userSub.unsubscribe();
+    }
 
     @Output() currentPage = new EventEmitter<string>();
     
