@@ -23,10 +23,7 @@ export class DataStorageService {
         return this.authService.user.pipe(take(1), exhaustMap(user => {
             console.log(user.token);
              // retrieve recipes from endpoint, if recipes doesnt have ingredients set to empty array
-            return this.http.get<Recipe[]>('https://angular-recipes-4dbf4-default-rtdb.firebaseio.com/recipes.json', 
-            {
-                params: new HttpParams().set('auth', user.token)
-            })
+            return this.http.get<Recipe[]>('https://angular-recipes-4dbf4-default-rtdb.firebaseio.com/recipes.json')
         }))
         .pipe(map(recipes => {
             return recipes.map(recipe => {

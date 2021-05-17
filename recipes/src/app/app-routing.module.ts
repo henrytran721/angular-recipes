@@ -13,24 +13,11 @@ import { NoRecipeComponent } from "./recipes/no-recipe/no-recipe.component";
 import { RecipesEditComponent } from "./recipes/recipes-edit/recipes-edit.component";
 import { RecipesResolverService } from "./recipes/recipes-resolver.service";
 import { AuthComponent } from "./auth/auth.component";
+import { AuthGuard } from "./auth/auth-guard";
 
 
 const appRoutes:Routes = [
     {path: '', redirectTo: '/recipes', pathMatch: 'full'},
-    {
-        path: 'recipes',
-        component: RecipesComponent,
-        children: [
-            {path: '', component: NoRecipeComponent},
-            {path: 'new', component: RecipesEditComponent},
-            {path: ':id', component: RecipeDetailComponent, resolve: [RecipesResolverService]},
-            {path: ':id/edit', component: RecipesEditComponent, resolve: [RecipesResolverService]}
-        ]
-    },
-    {
-        path: 'shopping-list',
-        component: ShoppingListComponent,
-    },
     {
         path: 'auth', component: AuthComponent
     }
